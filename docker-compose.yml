@@ -22,9 +22,23 @@ services:
       API_HOST: localhost
       API_PORT: 9000
 
+  #==================================
+  # Postgres
+  #==================================
+  postgres:
+    build:
+      context: postgres
+      dockerfile: Dockerfile
+    image: postgres
+    networks:
+      - bigdata-net
+    ports:
+      - "5433:5432"
+
 networks:
   default:
     external:
       name: bigdata-net
   bigdata-net:
     driver: bridge
+
