@@ -34,6 +34,10 @@ services:
       - bigdata-net
     ports:
       - "5433:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: metastore
 
 networks:
   default:
