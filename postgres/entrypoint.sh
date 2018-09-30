@@ -28,7 +28,6 @@ if [ "$1" = 'run-postgres' ]; then
 
 	# Add configuration files
 	cp /pg_hba.conf "$PGDATA" 
-	cp /postgresql.conf "$PGDATA"
 
         # Inform the user that startup is complete
         echo
