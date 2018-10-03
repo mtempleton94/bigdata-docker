@@ -61,7 +61,7 @@ RUN mv ../hadoop-$HADOOP_VER $HADOOP_HOME
 # Hadoop Configuration
 #===============================================
 #COPY ./config/core-site.xml /opt/hadoop/etc/hadoop/core-site.xml
-#COPY ./config/hadoop-env.sh /opt/hadoop/etc/hadoop/hadoop-env.sh
+COPY ./config/hadoop-env.sh /opt/hadoop/etc/hadoop/hadoop-env.sh
 #COPY ./config/hdfs-site.xml /opt/hadoop/etc/hadoop/hdfs-site.xml 
 #COPY ./config/mapred-site.xml /opt/hadoop/etc/hadoop/mapred-site.xml
 
