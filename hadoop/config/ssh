@@ -1,1 +1,4 @@
-[TODO]
+Host *
+  UserKnownHostsFile /dev/null
+  StrictHostKeyChecking no
+  Port 22
