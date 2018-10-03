@@ -1,1 +1,10 @@
-<!-- [TODO] -->
+<configuration>
+    <property>
+        <name>dfs.namenode.name.dir</name>
+        <value>file:///hdfs/dfs/name</value>
+    </property>
+    <property>
+        <name>dfs.namenode.data.dir</name>
+        <value>file:///hdfs/dfs/data</value>
+    </property>
+</configuration>
