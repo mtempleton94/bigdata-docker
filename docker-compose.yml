@@ -39,6 +39,37 @@ services:
       POSTGRES_PASSWORD: postgres
       POSTGRES_DB: metastore
 
+  #==================================
+  # Hadoop
+  #==================================
+  hadoop:
+    build:
+      context: hadoop
+      dockerfile: Dockerfile
+    image: hadoop
+    external_links:
+      - zookeeper
+    networks:
+      - bigdata-net
+    volumes:
+      - hadoop_conf:/opt/hadoop/etc/hadoop
+      - hadoop_logs:/opt/hadoop/logs
+      - hadoop_hdfs:/hdfs
+    ports:
+      - "50070:50070"
+      - "50075:50075"
+      - "8020:8020"
+      - "8042:8042"
+      - "8088:8088"
+      - "8188:8188"
+      - "19888:19888"
+
+# Reset volumes
+volumes:
+  hadoop_conf: null
+  hadoop_hdfs: null
+  hadoop_logs: null
+
 networks:
   default:
     external:
