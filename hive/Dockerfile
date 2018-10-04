@@ -37,7 +37,7 @@ RUN rm -f apache-maven-3.5.4-bin.tar.gz
 RUN mv apache-maven-3.5.4/ apache-maven/
 
 # Add Maven configuration file
-ADD etc/maven.sh /etc/profile.d/
+ADD config/maven.sh /etc/profile.d/
 RUN chmod +x /etc/profile.d/maven.sh
 RUN source /etc/profile.d/maven.sh
 
