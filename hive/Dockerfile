@@ -47,6 +47,19 @@ RUN mkdir jdbc/
 ADD jdbc/ jdbc/
 
 #===============================================
+# Hadoop Configuration Files
+#===============================================
+WORKDIR /
+ADD config/core-site.xml /etc/hadoop/conf/
+ADD config/hdfs-site.xml /etc/hadoop/conf/
+
+#===============================================
+# Hive Configuration Files
+#===============================================
+ADD config/hbase-site.xml /etc/hadoop/conf/
+ADD config/hive-site.xml /etc/hadoop/conf/
+
+#===============================================
 # Ports
 #===============================================
 # Expose Hive ports
