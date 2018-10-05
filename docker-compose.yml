@@ -87,6 +87,28 @@ services:
       - 50111:50111
       - 9999:9999
 
+  #==================================
+  # Impala
+  #==================================
+  impala:
+    build:
+      context: impala
+      dockerfile: Dockerfile
+    image: impala
+    networks:
+      - bigdata-net
+    external_links:
+      - hadoop
+      - hive
+      - zookeeper
+      - postgres
+    ports:
+      - 21000:21000
+      - 21050:21050
+      - 25000:25000
+      - 25010:25010
+      - 25020:25020
+
 # Reset volumes
 volumes:
   hadoop_hdfs: null
