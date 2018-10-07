@@ -60,3 +60,9 @@ __Using Impala Shell__
 __Using JDBC with Maven__
 [TODO]
 
+## TODO
+- Merge the base image into the main docker-compose file
+- Wait for dependent containers to start up before starting othes so all containers can be brought up at once.
+- Separate containers for hadoop name and data nodes so multiple data nodes can be run.
+- Change Java version to JDK to allow Maven based Java projects to run.
+- Maven support for impala container
