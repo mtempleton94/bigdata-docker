@@ -77,3 +77,4 @@ __Using JDBC with Maven__
 - Change Java version to JDK to allow Maven based Java projects to run.
 - Maven support for impala container
 - Add an Accumulo container
+- Fix the "metastore already exists" error
