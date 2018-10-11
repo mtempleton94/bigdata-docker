@@ -42,11 +42,11 @@ services:
   #==================================
   # Hadoop
   #==================================
-  hadoop:
+  namenode:
     build:
-      context: hadoop
+      context: namenode
       dockerfile: Dockerfile
-    image: hadoop
+    image: namenode
     external_links:
       - zookeeper
     networks:
@@ -61,6 +61,29 @@ services:
       - "8088:8088"
       - "8188:8188"
       - "19888:19888"
+
+  #==================================
+  # Hadoop DataNodes
+  #==================================
+  datanode-1:
+    build:
+      context: datanode
+      dockerfile: Dockerfile
+    networks:
+      - bigdata-net
+    ports:
+      - "9901:9864"
+      - "8041:8042"
+
+  datanode-2:
+    build:
+      context: datanode
+      dockerfile: Dockerfile
+    networks:
+      - bigdata-net
+    ports:
+      - "9902:9864"
+      - "8043:8042"
 
   #==================================
   # Hive

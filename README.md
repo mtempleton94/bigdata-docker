@@ -1,5 +1,15 @@
 # Big Data Docker Containers
 Docker containers for running big data platform. Containers for Hadoop, Hive, Impala, Zookeeper and Postgres. 
+## Quick Start
+```
+cd bigdata-docker/base/
+docker-compose build base-centos
+cd ../
+docker-compose build 
+docker-compose -p bigdata-net up zookeeper postgres hadoop
+# wait for containers to start
+docker-compose -p bigdata-net up hive impala
+```
 ## Building Containers
 All containers can be build using docker-compose.
 ```
@@ -66,3 +76,5 @@ __Using JDBC with Maven__
 - Separate containers for hadoop name and data nodes so multiple data nodes can be run.
 - Change Java version to JDK to allow Maven based Java projects to run.
 - Maven support for impala container
+- Add an Accumulo container
+- Fix the "metastore already exists" error

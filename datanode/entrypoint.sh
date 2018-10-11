@@ -16,19 +16,22 @@ chmod 0600 ~/.ssh/authorized_keys
 exec /usr/sbin/sshd -D &
 
 # Start Hadoop NameNode and DataNodes
-/opt/hadoop/sbin/start-dfs.sh
+#/opt/hadoop/sbin/start-dfs.sh
+
+#nohup hdfs namenode &
+nohup hdfs datanode &
 
 # Start Resource Manager
-/opt/hadoop/sbin/yarn-daemon.sh --config $YARN_CONF_DIR start resourcemanager
+#/opt/hadoop/sbin/yarn-daemon.sh --config $YARN_CONF_DIR start resourcemanager
 
 # Start Node Manager
 /opt/hadoop/sbin/yarn-daemon.sh --config $YARN_CONF_DIR start nodemanager
 
 # Start Timeline Server
-/opt/hadoop/sbin/yarn-daemon.sh --config $YARN_CONF_DIR start timelineserver
+#/opt/hadoop/sbin/yarn-daemon.sh --config $YARN_CONF_DIR start timelineserver
 
 # Start History Server
-/opt/hadoop/sbin/mr-jobhistory-daemon.sh start historyserver
+#/opt/hadoop/sbin/mr-jobhistory-daemon.sh start historyserver
 
 # Full permissions for hdfs user
 hdfs dfs -chown hdfs:supergroup /
@@ -36,7 +39,7 @@ hdfs dfs -chmod 777 /
 hdfs dfs -chmod 777 /tmp
 
 # Leave safe mode
-hadoop dfsadmin -safemode leave
+#hadoop dfsadmin -safemode leave
 
 echo
 echo "================================================="

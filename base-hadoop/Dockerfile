@@ -46,7 +46,7 @@ RUN usermod -a -G supergroup hdfs
 #===============================================
 # Hadoop
 #===============================================
-RUN wget https://archive.apache.org/dist/hadoop/core/hadoop-2.8.1/hadoop-2.8.1.tar.gz
+#RUN wget https://archive.apache.org/dist/hadoop/core/hadoop-2.8.1/hadoop-2.8.1.tar.gz
 COPY hadoop-2.8.1.tar.gz .
 RUN tar -xvf hadoop-$HADOOP_VER.tar.gz -C ../
 RUN mv ../hadoop-$HADOOP_VER $HADOOP_HOME
@@ -139,6 +139,8 @@ EXPOSE 8030 8031 8032 8040 8042 8046 8047 8088 8090 8188 8190 8788 10200
   # 22 | SSH
 EXPOSE 21 22
 
+EXPOSE 9864
+
 #===============================================
 # Volume
 #===============================================
@@ -147,6 +149,6 @@ VOLUME ["/hdfs"]
 #===============================================
 # Entrypoint
 #===============================================
-COPY entrypoint.sh /
-CMD ["/entrypoint.sh"]
+#COPY entrypoint.sh /
+#CMD ["/entrypoint.sh"]
 
