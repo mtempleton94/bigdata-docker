@@ -46,10 +46,11 @@ RUN usermod -a -G supergroup hdfs
 #===============================================
 # Hadoop
 #===============================================
-#RUN wget https://archive.apache.org/dist/hadoop/core/hadoop-2.8.1/hadoop-2.8.1.tar.gz
-COPY hadoop-2.8.1.tar.gz .
+RUN wget https://archive.apache.org/dist/hadoop/core/hadoop-2.8.1/hadoop-2.8.1.tar.gz
+#COPY hadoop-2.8.1.tar.gz .
 RUN tar -xvf hadoop-$HADOOP_VER.tar.gz -C ../
 RUN mv ../hadoop-$HADOOP_VER $HADOOP_HOME
+RUN rm /opt/docker/hadoop-$HADOOP_VER.tar.gz
 
 #===============================================
 # SSH Configuration
