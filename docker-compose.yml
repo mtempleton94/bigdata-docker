@@ -85,6 +85,15 @@ services:
       - "9902:9864"
       - "8043:8042"
 
+  datanode-3:
+    build:
+      context: datanode
+      dockerfile: Dockerfile
+    networks:
+      - bigdata-net
+    ports:
+      - "9903:9864"
+      - "8044:8042"
   #==================================
   # Hive
   #===================================

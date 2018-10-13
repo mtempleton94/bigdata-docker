@@ -24,7 +24,8 @@ build-namenode:
 	
 build-datanode:
 	docker-compose build datanode-1; \
-	docker-compose build datanode-2;
+	docker-compose build datanode-2; \
+	docker-compose build datanode-3;
 
 build-hive:
 	docker-compose build hive;
