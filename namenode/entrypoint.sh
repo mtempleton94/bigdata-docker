@@ -15,11 +15,19 @@ chmod 0600 ~/.ssh/authorized_keys
 
 exec /usr/sbin/sshd -D &
 
-# Start Hadoop NameNode and DataNodes
-#/opt/hadoop/sbin/start-dfs.sh
+# Wait for Zookeeper to Start
+echo "Waiting for Zookeeper to start..."
+timeout 120 bash -c 'until echo > /dev/tcp/zookeeper/2181; do sleep 0.5; done' &>/dev/null || \
+{
+        echo -e "###########################################################";
+        echo -e "NAMENODE ERROR: Zookeeper did not start within 120 seconds.";
+        echo -e "###########################################################";
+        exit;
+}
+echo "Zookeeper Started."
 
+# Start NameNode
 nohup hdfs namenode &
-#nohup hdfs datanode &
 
 # Start Resource Manager
 /opt/hadoop/sbin/yarn-daemon.sh --config $YARN_CONF_DIR start resourcemanager

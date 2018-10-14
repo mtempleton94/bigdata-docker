@@ -15,11 +15,11 @@ chmod 0600 ~/.ssh/authorized_keys
 
 # make sure the NameNode has started
 echo "Waiting for NameNode to start..."
-timeout 60 bash -c 'until echo > /dev/tcp/namenode/8020; do sleep 0.5; done' &>/dev/null || \
+timeout 120  bash -c 'until echo > /dev/tcp/namenode/8020; do sleep 0.5; done' &>/dev/null || \
 {
-        echo -e "#######################################################";
-        echo -e "ERROR: Hadoop NameNode did not start within 60 seconds.";
-        echo -e "#######################################################";
+        echo -e "#################################################################";
+        echo -e "DATANODE ERROR: Hadoop NameNode did not start within 120 seconds.";
+        echo -e "#################################################################";
         exit;
 }
 echo "NameNode Started."
