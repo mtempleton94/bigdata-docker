@@ -50,18 +50,47 @@ hdfs dfs -chmod 777 /tmp
 hadoop dfsadmin -safemode leave
 
 echo
-echo "================================================="
-echo "================= Hadoop Started ================" 
-echo "================================================="
+echo "==================================================="
+echo "================= NameNode Started ================"
+echo "==================================================="
 echo
 
 # Run health check on running processes
-# [TODO] Health check for all processes
 while sleep 60; do
   ps aux |grep sshd |grep -q -v grep
   PROCESS_1_STATUS=$?
   if [ $PROCESS_1_STATUS -ne 0 ]; then
-    echo "One of the processes has already exited."
+    echo "NAMENODE ERROR: SSHD HAS STOPPED. "
+    exit 1
+  fi
+  ps aux |grep namenode |grep -q -v grep
+  PROCESS_2_STATUS=$?
+  if [ $PROCESS_2_STATUS -ne 0 ]; then
+    echo "NAMENODE ERROR: NAMENODE HAS STOPPED."
+    exit 1
+  fi
+  ps aux |grep resourcemanager |grep -q -v grep
+  PROCESS_3_STATUS=$?
+  if [ $PROCESS_3_STATUS -ne 0 ]; then
+    echo "NAMENODE ERROR: RESOURCE MANAGER HAS STOPPED."
+    exit 1
+  fi
+  ps aux |grep nodemanager |grep -q -v grep
+  PROCESS_4_STATUS=$?
+  if [ $PROCESS_4_STATUS -ne 0 ]; then
+    echo "NAMENODE ERROR: NODE MANAGER HAS STOPPED."
+    exit 1
+  fi
+  ps aux |grep timelineserver |grep -q -v grep
+  PROCESS_5_STATUS=$?
+  if [ $PROCESS_5_STATUS -ne 0 ]; then
+    echo "NAMENODE ERROR: TIMELINE SERVER HAS STOPPED."
+    exit 1
+  fi
+  ps aux |grep historyserver |grep -q -v grep
+  PROCESS_6_STATUS=$?
+  if [ $PROCESS_6_STATUS -ne 0 ]; then
+    echo "NAMENODE ERROR: HISTORY SERVER HAS STOPPED."
     exit 1
   fi
 done

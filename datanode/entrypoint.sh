@@ -47,12 +47,23 @@ echo "================================================="
 echo
 
 # Run health check on running processes
-# [TODO] Health check for all processes
 while sleep 60; do
   ps aux |grep sshd |grep -q -v grep
   PROCESS_1_STATUS=$?
   if [ $PROCESS_1_STATUS -ne 0 ]; then
-    echo "One of the processes has already exited."
+    echo "DATANODE ERROR: SSHD HAS STOPPER."
+    exit 1
+  fi
+  ps aux |grep datanode |grep -q -v grep
+  PROCESS_2_STATUS=$?
+  if [ $PROCESS_2_STATUS -ne 0 ]; then
+    echo "DATANODE ERROR: DATANODE HAS STOPPED."
+    exit 1
+  fi
+  ps aux |grep nodemanager |grep -q -v grep
+  PROCESS_3_STATUS=$?
+  if [ $PROCESS_3_STATUS -ne 0 ]; then
+    echo "DATANODE ERROR: NODE MANAGER HAS STOPPED."
     exit 1
   fi
 done
