@@ -26,7 +26,7 @@ Use docker-compose to access containers by name.
 docker-compose -p bigdata-net exec impala bash
 ```
 ## Container Structure
-<img src="https://raw.githubusercontent.com/mtempleton94/bigdata-docker/master/images/bigdata-docker-structure.PNG" width="350">
+<img src="https://raw.githubusercontent.com/mtempleton94/bigdata-docker/master/images/bigdata-docker-structure.PNG" width="650">
 
 ## Adding Data to the HDFS
 1. Copy files to the NameNode container.
