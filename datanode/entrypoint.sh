@@ -13,25 +13,24 @@ ssh-keygen -t dsa -P '' -f ~/.ssh/id_dsa
 cat ~/.ssh/id_dsa.pub > ~/.ssh/authorized_keys
 chmod 0600 ~/.ssh/authorized_keys
 
+# make sure the NameNode has started
+echo "Waiting for NameNode to start..."
+timeout 60 bash -c 'until echo > /dev/tcp/namenode/8020; do sleep 0.5; done' &>/dev/null || \
+{
+        echo -e "#######################################################";
+        echo -e "ERROR: Hadoop NameNode did not start within 60 seconds.";
+        echo -e "#######################################################";
+        exit;
+}
+echo "NameNode Started."
+
 exec /usr/sbin/sshd -D &
 
-# Start Hadoop NameNode and DataNodes
-#/opt/hadoop/sbin/start-dfs.sh
-
-#nohup hdfs namenode &
+# start datanode
 nohup hdfs datanode &
-
-# Start Resource Manager
-#/opt/hadoop/sbin/yarn-daemon.sh --config $YARN_CONF_DIR start resourcemanager
 
 # Start Node Manager
 /opt/hadoop/sbin/yarn-daemon.sh --config $YARN_CONF_DIR start nodemanager
-
-# Start Timeline Server
-#/opt/hadoop/sbin/yarn-daemon.sh --config $YARN_CONF_DIR start timelineserver
-
-# Start History Server
-#/opt/hadoop/sbin/mr-jobhistory-daemon.sh start historyserver
 
 # Full permissions for hdfs user
 hdfs dfs -chown hdfs:supergroup /
@@ -43,7 +42,7 @@ hdfs dfs -chmod 777 /tmp
 
 echo
 echo "================================================="
-echo "================= Hadoop Started ================" 
+echo "================ DataNode Started ===============" 
 echo "================================================="
 echo
 
