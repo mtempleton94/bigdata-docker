@@ -26,7 +26,7 @@ Use docker-compose to access containers by name.
 docker-compose -p bigdata-net exec impala bash
 ```
 ## Container Structure
-<img src="https://raw.githubusercontent.com/mtempleton94/bigdata-docker/master/images/bigdata-docker-structure.PNG" width="350">
+<img src="https://raw.githubusercontent.com/mtempleton94/bigdata-docker/master/images/bigdata-docker-structure.PNG" width="650">
 
 ## Adding Data to the HDFS
 1. Copy files to the NameNode container.
@@ -60,8 +60,19 @@ beeline
 show databases;
 ```
 __Using JDBC with Maven__
-[TODO]
-
+1. From the Hive container, navigate to the directory containing the pom.xml file and project file
+```
+cd jdbc
+```
+2. Run the Maven package command
+```
+mvn package
+```
+3. Run the Java Project
+```
+cd target/
+java -jar hive-jdbc-example-1.0-jar-with-dependencies.jar
+```
 ## Running Impala Queries
 __Using Impala Shell__
 1. Start the Impala Shell
